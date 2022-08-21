@@ -1,17 +1,32 @@
 const express = require("express");
 const helmet = require("helmet");
-const comporession = require("compression");
+const compression = require("compression");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const routes = require("./routes/users");
+
+dotenv.config("./.env");
 
 const app = express();
 
 app.use(helmet());
-app.use(comporession());
+app.use(compression());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
-app.route("/api").get((_req, res) => {
-	res.json({ message: "Hello World" });
+app.use("/api/v1", routes);
+
+app.route("/").get((_req, res) => {
+	res.sendFile(`${process.cwd()}/index.html`);
 });
+
+mongoose.connect(
+	process.env.MONGODB_URI,
+	(err) => {
+		if (err) return console.log(`Error : ${err}`);
+	},
+	console.log(`MongoDB Connection -- Ready state is: ${mongoose.connection.readyState}`)
+);
 
 const listener = app.listen(process.envPORT || 3000, (err) => {
 	if (err) {
