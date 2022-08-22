@@ -1,5 +1,6 @@
 const Users = require("../models/users");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const newUsers = (req, res, _next) => {
 	const { name, email, password, confirmPassword } = req.body;
@@ -76,4 +77,68 @@ const deleteUsers = (_req, res, _next) => {
 	});
 };
 
-module.exports = { newUsers, getUsers, deleteUsers };
+const loginUsers = (req, res, _next) => {
+	const { email, password } = req.body;
+	if (!email || !password) {
+		return res.status(400).json({
+			message: "Please fill all fields",
+		});
+	}
+	Users.findOne({ email: email }, (err, data) => {
+		if (err) {
+			return res.status(500).json({
+				message: "Something went wrong",
+			});
+		}
+		if (!data) {
+			return res.status(400).json({
+				message: "User does not exist",
+			});
+		}
+		const isPasswordMatch = bcryptjs.compareSync(password, data.password);
+		if (!isPasswordMatch) {
+			return res.status(400).json({
+				message: "Email or Password is incorrect",
+			});
+		}
+		const generateToken = (payload) => {
+			return jwt.sign(payload, process.env.SECRET, {
+				expiresIn: "1d",
+			});
+		};
+		const token = generateToken({
+			userId: data._id,
+			email: data.email,
+			password: data.password,
+		});
+		return res.status(200).json({
+			message: "User logged in successfully",
+			id: data._id,
+			email: data.email,
+			token: token,
+		});
+	});
+};
+
+// get user by email
+const getUsersByEmail = (req, res, _next) => {
+	const { email } = req.params;
+	Users.findOne({ email: email }, (err, data) => {
+		if (err) {
+			return res.status(500).json({
+				message: "Something went wrong",
+			});
+		}
+		if (!data) {
+			return res.status(404).json({
+				message: "User not found",
+			});
+		}
+		return res.status(200).json({
+			message: "User found",
+			data: data,
+		});
+	}).sort({ createdAt: -1 });
+};
+
+module.exports = { newUsers, getUsers, deleteUsers, loginUsers, getUsersByEmail };
