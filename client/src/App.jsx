@@ -1,30 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import NavigationBar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import Testimonials from "./components/Testimonials";
+import Sidebar from "./components/Users/Sidebar";
 
 function App() {
-
-	const [count, setCount] = useState(0);
-
 	return (
-		<div className="App">
-			<header >
-			</header>
-			<a href="https://vitejs.dev" target="_blank">
-				<img src="/vite.svg" className="logo" alt="Vite logo" />
-			</a>
-			<a href="https://reactjs.org" target="_blank">
-				<img src={reactLogo} className="logo react" alt="React logo" />
-			</a>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-		</div>
+		<>
+			<NavigationBar />
+			<Hero />
+			<Testimonials />
+			<Footer />
+			{/* <Sidebar /> */}
+		</>
 	);
 }
 
