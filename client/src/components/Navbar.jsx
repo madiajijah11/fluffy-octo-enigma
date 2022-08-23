@@ -62,16 +62,22 @@ export default function NavigationBar() {
 					<button onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}>
 						{colorMode === "light" ? "🌙" : "🌞"}
 					</button>
-					<Button as={"a"} fontSize={"sm"} fontWeight={400} variant={"link"} href={"#"}>
+					<Button
+						as={"a"}
+						fontSize={"sm"}
+						fontWeight={400}
+						variant={"link"}
+						href={"/login"}>
 						Sign In
 					</Button>
 					<Button
+						as={"a"}
 						display={{ base: "none", md: "inline-flex" }}
 						fontSize={"sm"}
 						fontWeight={600}
 						color={"white"}
 						bg={"pink.400"}
-						href={"#"}
+						href={"/register"}
 						_hover={{
 							bg: "pink.300",
 						}}>
