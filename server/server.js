@@ -3,9 +3,12 @@ const helmet = require("helmet");
 const compression = require("compression");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const routes = require("./routes/users");
+const cors = require("cors");
+
+const usersRoutes = require("./routes/users");
 const auth = require("./routes/auth");
 const verifyToken = require("./middleware/auth");
+const petsRoutes = require("./routes/pets");
 
 dotenv.config("./.env");
 
@@ -16,8 +19,9 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/api", cors(), petsRoutes);
 app.use("/", auth);
-app.use("/api/v1", verifyToken, routes);
+app.use("/api/v1", verifyToken, usersRoutes);
 
 app.route("/").get((_req, res) => {
 	res.sendFile(`${process.cwd()}/index.html`);
