@@ -1,4 +1,4 @@
-export default function Login() {
+export default function Signin() {
 	return (
 		<div className="hero min-h-screen bg-base-200">
 			<div className="hero-content flex-col lg:flex-row-reverse">
@@ -15,7 +15,11 @@ export default function Login() {
 							<label className="label">
 								<span className="label-text">Email</span>
 							</label>
-							<input type="text" placeholder="email" className="input input-bordered" />
+							<input
+								type="text"
+								placeholder="email"
+								className="input input-bordered"
+							/>
 						</div>
 						<div className="form-control">
 							<label className="label">

@@ -56,20 +56,10 @@ export default function NavigationBar() {
 									{theme.toUpperCase()}
 								</button>
 							))}
-							{/* <li>
-								<button data-set-theme="light" data-act-class="ACTIVECLASS">
-									Light
-								</button>
-							</li>
-							<li>
-								<button data-set-theme="dark" data-act-class="ACTIVECLASS">
-									Dark
-								</button>
-							</li> */}
 						</ul>
 					</li>
 					<li>
-						<a>Sign in</a>
+						<a href="/login">Sign in</a>
 					</li>
 					<li>
 						<a>Sign up</a>

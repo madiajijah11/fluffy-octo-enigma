@@ -5,7 +5,7 @@ import NavigationBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Sidebar from "./components/Users/Sidebar";
-import Login from "./components/Users/Login";
+import Signin from "./components/Users/Signin";
 import Signup from "./components/Users/Signup";
 import UsersList from "./components/Users/PetsList";
 
@@ -21,8 +21,8 @@ function App() {
 			<Hero />
 			<Footer />
 			{/* <Sidebar /> */}
-			{/* <Login /> */}
-			{/* <Signup /> */}
+			<Signin />
+			<Signup />
 		</>
 	);
 }
