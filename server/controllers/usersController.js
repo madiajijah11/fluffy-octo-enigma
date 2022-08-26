@@ -57,10 +57,7 @@ const getUsers = (_req, res, _next) => {
 				message: "No users found",
 			});
 		}
-		return res.status(200).json({
-			message: "Complete Users found",
-			data: data,
-		});
+		return res.status(200).json(data);
 	}).sort({ createdAt: -1 });
 };
 
@@ -134,10 +131,7 @@ const getUsersByEmail = (req, res, _next) => {
 				message: "User not found",
 			});
 		}
-		return res.status(200).json({
-			message: "User found",
-			data: data,
-		});
+		return res.status(200).json(data);
 	}).sort({ createdAt: -1 });
 };
 

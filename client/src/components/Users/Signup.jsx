@@ -1,116 +1,47 @@
-import {
-	Flex,
-	Box,
-	FormControl,
-	FormLabel,
-	Input,
-	InputGroup,
-	HStack,
-	InputRightElement,
-	Stack,
-	Button,
-	Heading,
-	Text,
-	useColorModeValue,
-	Link,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-
 export default function Signup() {
-	const [showPassword, setShowPassword] = useState(false);
-	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
 	return (
-		<Flex
-			minH={"100vh"}
-			align={"center"}
-			justify={"center"}
-			bg={useColorModeValue("gray.50", "gray.800")}>
-			<Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-				<Stack align={"center"}>
-					<Heading fontSize={"4xl"} textAlign={"center"}>
-						Sign up create your account
-					</Heading>
-					<Text fontSize={"lg"} color={"gray.600"}>
-						to enjoy all of our cool features ✌️
-					</Text>
-				</Stack>
-				<form action="/api/v1/register" method="post">
-					<Box
-						rounded={"lg"}
-						bg={useColorModeValue("white", "gray.700")}
-						boxShadow={"lg"}
-						p={8}>
-						<Stack spacing={4}>
-							<FormControl id="fullName" isRequired>
-								<FormLabel>Full Name</FormLabel>
-								<Input type="text" name="name" autoComplete="off" />
-							</FormControl>
-							<FormControl id="email" isRequired>
-								<FormLabel>Email address</FormLabel>
-								<Input type="email" name="email" autoComplete="off" />
-							</FormControl>
-							<FormControl id="password" isRequired>
-								<FormLabel>Password</FormLabel>
-								<InputGroup>
-									<Input
-										type={showPassword ? "text" : "password"}
-										name="password"
-									/>
-									<InputRightElement h={"full"}>
-										<Button
-											variant={"ghost"}
-											onClick={() =>
-												setShowPassword((showPassword1) => !showPassword1)
-											}>
-											{showPassword ? <ViewIcon /> : <ViewOffIcon />}
-										</Button>
-									</InputRightElement>
-								</InputGroup>
-							</FormControl>
-							<FormControl id="confirmPassword" isRequired>
-								<FormLabel>Confirm Password</FormLabel>
-								<InputGroup>
-									<Input
-										type={showConfirmPassword ? "text" : "password"}
-										name="confirmPassword"
-									/>
-									<InputRightElement h={"full"}>
-										<Button
-											variant={"ghost"}
-											onClick={() =>
-												setShowConfirmPassword(
-													(showConfirmPassword1) => !showConfirmPassword1
-												)
-											}>
-											{showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
-										</Button>
-									</InputRightElement>
-								</InputGroup>
-							</FormControl>
-							<Stack spacing={10} pt={2}>
-								<Button
-									type="submit"
-									loadingText="Submitting"
-									size="lg"
-									bg={"blue.400"}
-									color={"white"}
-									_hover={{
-										bg: "blue.500",
-									}}>
-									Sign up
-								</Button>
-							</Stack>
-							<Stack pt={6}>
-								<Text align={"center"}>
-									Already a user? <Link color={"blue.400"}>Login</Link>
-								</Text>
-							</Stack>
-						</Stack>
-					</Box>
-				</form>
-			</Stack>
-		</Flex>
+		<div className="hero min-h-screen bg-base-200">
+			<div className="hero-content flex-col lg:flex-row-reverse">
+				<div className="text-center lg:text-left">
+					<h1 className="text-5xl font-bold">Login now!</h1>
+					<p className="py-6">
+						Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+						exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+					</p>
+				</div>
+				<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+					<div className="card-body">
+						<div className="form-control">
+							<label className="label">
+								<span className="label-text">Email</span>
+							</label>
+							<input
+								type="text"
+								placeholder="email"
+								className="input input-bordered"
+							/>
+						</div>
+						<div className="form-control">
+							<label className="label">
+								<span className="label-text">Password</span>
+							</label>
+							<input
+								type="text"
+								placeholder="password"
+								className="input input-bordered"
+							/>
+							<label className="label">
+								<a href="#" className="label-text-alt link link-hover">
+									Forgot password?
+								</a>
+							</label>
+						</div>
+						<div className="form-control mt-6">
+							<button className="btn btn-primary">Login</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }

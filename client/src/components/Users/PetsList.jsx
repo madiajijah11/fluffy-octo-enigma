@@ -9,7 +9,7 @@ const PetsList = () => {
 		fetch("http://localhost:3000/api/pets")
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data.data);
+				console.log(data);
 				setPets(data);
 				setLoading(false);
 			})
@@ -30,7 +30,7 @@ const PetsList = () => {
 	return (
 		<div>
 			<h1>Pets List</h1>
-			{pets.data?.map((pet) => (
+			{pets?.map((pet) => (
 				<ul key={pet.id}>
 					<li>{pet.name}</li>
 					<li>{pet.age}</li>
