@@ -38,6 +38,11 @@ export default function Signin() {
 						</div>
 						<div className="form-control mt-6">
 							<button className="btn btn-primary">Login</button>
+							<label className="label">
+								<a href="/signup" className="label-text-alt link link-hover">
+									Don't have an account?
+								</a>
+							</label>
 						</div>
 					</div>
 				</div>

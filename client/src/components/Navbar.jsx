@@ -59,10 +59,10 @@ export default function NavigationBar() {
 						</ul>
 					</li>
 					<li>
-						<a href="/login">Sign in</a>
+						<a href="/signin">Sign in</a>
 					</li>
 					<li>
-						<a>Sign up</a>
+						<a href="/signup">Sign up</a>
 					</li>
 				</ul>
 			</div>
