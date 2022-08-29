@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
 import fetcher from "../../lib/axiosInstance";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
+	const navigate = useNavigate();
+
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
@@ -14,9 +17,15 @@ export default function Signin() {
 		e.preventDefault();
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
-
 		try {
-			
+			const { data } = await fetcher.post("/auth/login", {
+				email,
+				password,
+			});
+			localStorage.setItem("token", data.token);
+			setIsSuccess(true);
+			setIsError(false);
+			navigate("/dashboard");
 		} catch (error) {
 			setIsSuccess(false);
 			setIsError(true);

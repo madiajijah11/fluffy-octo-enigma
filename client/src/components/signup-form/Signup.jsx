@@ -37,7 +37,6 @@ export default function Signup() {
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
 			confirmPasswordRef.current.value = "";
-			
 		} catch (error) {
 			setIsSuccess(false);
 			setIsError(true);

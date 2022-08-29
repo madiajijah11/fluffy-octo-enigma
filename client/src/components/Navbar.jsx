@@ -31,6 +31,8 @@ const themes = [
 ];
 
 export default function NavigationBar() {
+	const users = localStorage.getItem("token");
+
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
@@ -58,14 +60,20 @@ export default function NavigationBar() {
 							))}
 						</ul>
 					</li>
-					<>
+					{users ? (
 						<li>
-							<a href="/signin">Sign in</a>
+							<a href="/dashboard">Dashboard</a>
 						</li>
-						<li>
-							<a href="/signup">Sign up</a>
-						</li>
-					</>
+					) : (
+						<>
+							<li>
+								<a href="/signin">Sign in</a>
+							</li>
+							<li>
+								<a href="/signup">Sign up</a>
+							</li>
+						</>
+					)}
 				</ul>
 			</div>
 		</div>
