@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import fetcher from "../../lib/axiosInstance";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Signin() {
 				email,
 				password,
 			});
-			localStorage.setItem("token", data.token);
+			sessionStorage.setItem("token", data.token);
 			setIsSuccess(true);
 			setIsError(false);
 			navigate("/dashboard");
@@ -31,6 +31,14 @@ export default function Signin() {
 			setIsError(true);
 		}
 	};
+
+	const users = sessionStorage.getItem("token");
+
+	useEffect(() => {
+		if (users) {
+			navigate("/dashboard");
+		}
+	}, []);
 
 	return (
 		<div className="hero min-h-screen bg-base-200">

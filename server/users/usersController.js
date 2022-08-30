@@ -105,12 +105,14 @@ const loginUsers = (req, res, _next) => {
 		};
 		const token = generateToken({
 			userId: data._id,
+			name: data.name,
 			email: data.email,
 			password: data.password,
 		});
 		return res.status(200).json({
 			message: "User logged in successfully",
 			id: data._id,
+			name: data.name,
 			email: data.email,
 			token: token,
 		});

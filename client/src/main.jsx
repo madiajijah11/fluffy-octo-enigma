@@ -5,7 +5,7 @@ import App from "./App";
 import "./index.css";
 import Signin from "./components/signin-form/Signin";
 import Signup from "./components/signup-form/Signup";
-import Dashboard from "./components/user/Dashboard";
+import Dashboard from "./components/users/Dashboard";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>

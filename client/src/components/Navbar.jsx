@@ -31,7 +31,7 @@ const themes = [
 ];
 
 export default function NavigationBar() {
-	const users = localStorage.getItem("token");
+	const users = sessionStorage.getItem("token");
 
 	return (
 		<div className="navbar bg-base-100">
