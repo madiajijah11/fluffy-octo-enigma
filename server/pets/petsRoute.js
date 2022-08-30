@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const petsController = require("../controllers/petsController");
+const petsController = require("./petsController");
 
 // Pets routes
 router.get("/pets", petsController.getPets); // Get all pets

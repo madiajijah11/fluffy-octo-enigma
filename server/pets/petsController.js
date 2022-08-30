@@ -1,4 +1,4 @@
-const Pets = require("../models/petsModel");
+const Pets = require("./petsModel");
 
 const newPets = (req, res, _next) => {
 	const { name, age, type, breed, description } = req.body;

@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const usersRoutes = require("./routes/usersRoute");
-const auth = require("./routes/authRoute");
-const verifyToken = require("./middleware/auth");
-const petsRoutes = require("./routes/petsRoute");
+const usersRoutes = require("./users/usersRoute");
+const auth = require("./auth/authRoute");
+const verifyToken = require("./auth/auth");
+const petsRoutes = require("./pets/petsRoute");
 
 dotenv.config("./.env");
 

@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const usersController = require("../controllers/usersController");
+const usersController = require("./usersController");
 
 router.get("/users", usersController.getUsers); // Get all users
 router.post("/users", (_req, res, _next) => {
