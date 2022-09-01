@@ -39,7 +39,7 @@ const getPets = (_req, res, _next) => {
 			});
 		}
 		return res.status(200).json(data);
-	}).sort({ _id: -1 });
+	});
 };
 
 const getPetsByName = (req, res, _next) => {

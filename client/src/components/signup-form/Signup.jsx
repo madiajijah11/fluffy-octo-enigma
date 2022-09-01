@@ -44,7 +44,7 @@ export default function Signup() {
 		}
 	};
 
-	const users = sessionStorage.getItem("token");
+	const users = sessionStorage.getItem("user");
 	const navigate = useNavigate();
 
 	useEffect(() => {

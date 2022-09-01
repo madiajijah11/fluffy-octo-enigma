@@ -104,7 +104,7 @@ const loginUsers = (req, res, _next) => {
 			});
 		};
 		const token = generateToken({
-			userId: data._id,
+			id: data._id,
 			name: data.name,
 			email: data.email,
 			password: data.password,
@@ -115,6 +115,8 @@ const loginUsers = (req, res, _next) => {
 			name: data.name,
 			email: data.email,
 			token: token,
+			createdAt: data.createdAt,
+			updatedAt: data.updatedAt,
 		});
 	});
 };

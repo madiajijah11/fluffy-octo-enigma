@@ -31,7 +31,7 @@ const themes = [
 ];
 
 export default function NavigationBar() {
-	const users = sessionStorage.getItem("token");
+	const users = sessionStorage.getItem("user");
 
 	return (
 		<div className="navbar bg-base-100">
@@ -53,8 +53,11 @@ export default function NavigationBar() {
 							</svg>
 						</a>
 						<ul className="p-2 bg-base-100">
-							{themes.map((theme) => (
-								<button data-set-theme={theme} data-act-class="ACTIVECLASS">
+							{themes.map((theme, index) => (
+								<button
+									key={index + 1}
+									data-set-theme={theme}
+									data-act-class="ACTIVECLASS">
 									{theme.toUpperCase()}
 								</button>
 							))}

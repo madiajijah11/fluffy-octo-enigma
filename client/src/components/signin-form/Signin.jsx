@@ -22,17 +22,20 @@ export default function Signin() {
 				email,
 				password,
 			});
-			sessionStorage.setItem("token", data.token);
+			sessionStorage.setItem("user", JSON.stringify(data));
+			
 			setIsSuccess(true);
 			setIsError(false);
 			navigate("/dashboard");
 		} catch (error) {
 			setIsSuccess(false);
 			setIsError(true);
+			emailRef.current.value = "";
+			passwordRef.current.value = "";
 		}
 	};
 
-	const users = sessionStorage.getItem("token");
+	const users = sessionStorage.getItem("user");
 
 	useEffect(() => {
 		if (users) {

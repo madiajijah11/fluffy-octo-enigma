@@ -1,13 +1,13 @@
 import PetsList from "../pets/PetsList";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Dashboard() {
 	const navigate = useNavigate();
-	const users = sessionStorage.getItem("token");
+	const users = sessionStorage.getItem("user");
 
 	const Logout = () => {
-		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("user");
 		navigate("/");
 	};
 
