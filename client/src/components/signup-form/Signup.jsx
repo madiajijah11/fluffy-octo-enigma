@@ -2,6 +2,7 @@ import fetcher from "../../lib/axiosInstance";
 import { useState, useRef, useEffect } from "react";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import sessionToken from "../../lib/sessionToken";
 
 export default function Signup() {
 	const [isSuccess, setIsSuccess] = useState(false);
@@ -44,14 +45,14 @@ export default function Signup() {
 		}
 	};
 
-	const users = sessionStorage.getItem("user");
+	const user = sessionToken();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (users) {
+		if (user) {
 			navigate("/dashboard");
 		}
-	}, [users]);
+	}, []);
 
 	return (
 		<div className="hero min-h-screen bg-base-200">

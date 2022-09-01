@@ -1,10 +1,11 @@
 import PetsList from "../pets/PetsList";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import sessionToken from "../../lib/sessionToken";
 
 export default function Dashboard() {
 	const navigate = useNavigate();
-	const users = sessionStorage.getItem("user");
+	const user = sessionToken();
 
 	const Logout = () => {
 		sessionStorage.removeItem("user");
@@ -12,7 +13,7 @@ export default function Dashboard() {
 	};
 
 	useEffect(() => {
-		if (!users) {
+		if (!user) {
 			navigate("/");
 		}
 	}, []);

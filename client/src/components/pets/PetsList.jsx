@@ -1,13 +1,11 @@
 import { useState } from "react";
 import FormAddPet from "./FormAddPet";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { getPets, deletePetById } from "../../api/pets";
 
 const PetsList = () => {
 	const [showModal, setShowModal] = useState(false);
-	const { data, error } = useSWR("/api/v1/pets", getPets, {
-		suspense: true,
-	});
+	const { data, error, mutate } = useSWR("/api/v1/pets", getPets);
 
 	const showModalHandler = () => {
 		setShowModal(true);
@@ -18,11 +16,11 @@ const PetsList = () => {
 		mutate(`/api/v1/pets`, getPets, false);
 	};
 
-	if (error) {
-		return <div>Failed to fetch data!</div>;
-	}
 	if (!data) {
 		return <div>No data found</div>;
+	}
+	if (error) {
+		return <div>Failed to fetch data!</div>;
 	}
 
 	return (
@@ -30,13 +28,13 @@ const PetsList = () => {
 			<div style={{ display: showModal ? "block" : "none" }}>
 				<FormAddPet setShowModal={setShowModal} />
 			</div>
-			<div style={{ display: showModal ? "none" : "block" }}>
+			<div style={{ display: showModal ? "none" : "block" }} className="pl-6 pr-6">
 				<div className="mt-5 mb-5">
 					<button className="btn btn-primary btn-md" onClick={showModalHandler}>
 						Add Pet +
 					</button>
 				</div>
-				<table className="table w-full">
+				<table className="table table-compact w-full">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -50,7 +48,7 @@ const PetsList = () => {
 					</thead>
 					<tbody>
 						{data?.data?.map((pet, index) => (
-							<tr key={pet._id}>
+							<tr key={pet._id} className="hover">
 								<td>{index + 1}</td>
 								<td>{pet.name}</td>
 								<td>{pet.age}</td>

@@ -4,6 +4,7 @@ import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import { userLogin } from "../../api/users";
+import sessionToken from "../../lib/sessionToken";
 
 export default function Signin() {
 	const navigate = useNavigate();
@@ -36,10 +37,10 @@ export default function Signin() {
 		}
 	};
 
-	const users = sessionStorage.getItem("user");
+	const user = sessionToken();
 
 	useEffect(() => {
-		if (users) {
+		if (user) {
 			navigate("/dashboard");
 		}
 	}, []);
