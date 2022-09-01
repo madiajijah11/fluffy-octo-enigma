@@ -23,7 +23,6 @@ export default function Signin() {
 				password,
 			});
 			sessionStorage.setItem("user", JSON.stringify(data));
-			
 			setIsSuccess(true);
 			setIsError(false);
 			navigate("/dashboard");

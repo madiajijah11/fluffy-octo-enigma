@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import fetcher from "../../lib/axiosInstance";
+import { addPet, getPets } from "../../api/pets";
+import { mutate } from "swr";
 
 function FormAddPet({ setShowModal }) {
 	const [isError, setIsError] = useState(false);
@@ -22,13 +23,14 @@ function FormAddPet({ setShowModal }) {
 		const breed = breedRef.current.value;
 		const description = descriptionRef.current.value;
 		try {
-			await fetcher.post("/api/pets", {
-				name,
-				age,
-				type,
-				breed,
-				description,
-			});
+			await addPet({ name, age, type, breed, description });
+			mutate("/api/v1/pets", getPets, false);
+			nameRef.current.value = "";
+			ageRef.current.value = "";
+			typeRef.current.value = "";
+			breedRef.current.value = "";
+			descriptionRef.current.value = "";
+			setIsError(false);
 			closeModalHandler();
 		} catch (error) {
 			setIsError(true);

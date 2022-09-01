@@ -12,6 +12,7 @@ router.delete("/pets", (_req, res, _next) => {
 		message: "Method not allowed",
 	});
 });
-router.get("/pets/:name", petsController.getPetsByName); // Get pet by name
+router.get("/pets/:id", petsController.getPetsById); // Get pet by id
+router.delete("/pets/:id", petsController.deletePetById); // Delete pet by id
 
 module.exports = router;

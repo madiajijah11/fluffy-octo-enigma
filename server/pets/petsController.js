@@ -42,14 +42,14 @@ const getPets = (_req, res, _next) => {
 	});
 };
 
-const getPetsByName = (req, res, _next) => {
-	const { name } = req.params;
-	if (!name) {
+const getPetsById = (req, res, _next) => {
+	const { id } = req.params;
+	if (!id) {
 		return res.status(400).json({
 			message: "Please fill all fields",
 		});
 	}
-	Pets.find({ name: name }, (err, data) => {
+	Pets.find({ _id: id }, (err, data) => {
 		if (err) {
 			return res.status(500).json({
 				message: "Something went wrong",
@@ -61,7 +61,24 @@ const getPetsByName = (req, res, _next) => {
 			});
 		}
 		return res.status(200).json(data);
-	}).sort({ _id: -1 });
+	});
 };
 
-module.exports = { newPets, getPets, getPetsByName };
+const deletePetById = (req, res, _next) => {
+	const { id } = req.params;
+	Pets.findByIdAndDelete({ _id: id }, (err, data) => {
+		if (err) {
+			return res.status(500).json({
+				message: "Something went wrong",
+			});
+		}
+		if (!data) {
+			return res.status(404).json({
+				message: "No pets found",
+			});
+		}
+		return res.status(200).json(data);
+	});
+};
+
+module.exports = { newPets, getPets, getPetsById, deletePetById };

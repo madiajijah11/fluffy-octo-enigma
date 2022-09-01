@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-	const token = req.body.token || req.query.token || req.header["Authorization"];
+	const token = req.body.token || req.query.token || req.headers.authorization;
 
 	if (!token) {
 		return res.status(401).json({
@@ -11,14 +11,16 @@ const verifyToken = (req, res, next) => {
 
 	jwt.verify(token, process.env.SECRET, (err, decoded) => {
 		if (!decoded) {
-			return res.status(403);
-		}
-		if (err) {
 			return res.status(401).json({
-				message: "Invalid token.",
+				message: "Failed to authenticate token.",
 			});
 		}
-		req.userId = decoded.userId;
+		if (err) {
+			return res.status(403).json({
+				message: "Token is not valid.",
+			});
+		}
+		req._Id = decoded;
 		next();
 	});
 };

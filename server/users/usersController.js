@@ -58,7 +58,7 @@ const getUsers = (_req, res, _next) => {
 			});
 		}
 		return res.status(200).json(data);
-	}).sort({ createdAt: -1 });
+	});
 };
 
 const deleteUsers = (_req, res, _next) => {
@@ -107,16 +107,31 @@ const loginUsers = (req, res, _next) => {
 			id: data._id,
 			name: data.name,
 			email: data.email,
-			password: data.password,
 		});
 		return res.status(200).json({
-			message: "User logged in successfully",
-			id: data._id,
 			name: data.name,
 			email: data.email,
 			token: token,
-			createdAt: data.createdAt,
-			updatedAt: data.updatedAt,
+		});
+	});
+};
+
+// logout user
+const logoutUsers = (req, res, next) => {
+	const { token } = req.body;
+	if (!token) {
+		return res.status(400).json({
+			message: "Please provide a token",
+		});
+	}
+	jwt.verify(token, process.env.SECRET, (err, decoded) => {
+		if (err) {
+			return res.status(401).json({
+				message: "Invalid token",
+			});
+		}
+		return res.status(200).json({
+			message: "Logout successfully",
 		});
 	});
 };
@@ -136,7 +151,7 @@ const getUsersByEmail = (req, res, _next) => {
 			});
 		}
 		return res.status(200).json(data);
-	}).sort({ createdAt: -1 });
+	});
 };
 
-module.exports = { newUsers, getUsers, deleteUsers, loginUsers, getUsersByEmail };
+module.exports = { newUsers, getUsers, deleteUsers, loginUsers, getUsersByEmail, logoutUsers };

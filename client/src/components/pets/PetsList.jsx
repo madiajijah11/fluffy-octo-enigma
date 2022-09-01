@@ -1,39 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormAddPet from "./FormAddPet";
-import fetcher from "../../lib/axiosInstance";
+import useSWR, { mutate } from "swr";
+import { getPets, deletePetById } from "../../api/pets";
 
 const PetsList = () => {
-	const [pets, setPets] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
 	const [showModal, setShowModal] = useState(false);
-
-	useEffect(() => {
-		setIsLoading(true);
-		fetcher
-			.get("/api/pets")
-			.then((res) => {
-				setPets(res.data);
-				setIsLoading(false);
-			})
-			.catch((err) => {
-				setIsLoading(false);
-			})
-			.finally(() => {
-				setIsLoading(false);
-			});
-	}, []);
-
-	if (!pets) {
-		return <div>Loading...</div>;
-	}
-
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
+	const { data, error } = useSWR("/api/v1/pets", getPets);
 
 	const showModalHandler = () => {
 		setShowModal(true);
 	};
+
+	const handleDelete = async (id) => {
+		await deletePetById(id);
+		mutate(`/api/v1/pets`, getPets, false);
+	};
+
+	if (error) {
+		return <div>Failed to fetch data!</div>;
+	}
+	if (!data) {
+		return <div>No data found</div>;
+	}
 
 	return (
 		<div>
@@ -55,10 +43,11 @@ const PetsList = () => {
 							<th>Type</th>
 							<th>Breed</th>
 							<th>Description</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						{pets?.map((pet, index) => (
+						{data?.data?.map((pet, index) => (
 							<tr key={pet._id}>
 								<td>{index + 1}</td>
 								<td>{pet.name}</td>
@@ -66,6 +55,13 @@ const PetsList = () => {
 								<td>{pet.type}</td>
 								<td>{pet.breed}</td>
 								<td>{pet.description}</td>
+								<td>
+									<button
+										className="btn-warning btn-md"
+										onClick={() => handleDelete(pet._id)}>
+										Delete
+									</button>
+								</td>
 							</tr>
 						))}
 					</tbody>
