@@ -11,3 +11,7 @@ export const deletePetById = (id) => {
 export const addPet = (pet) => {
 	return fetcher.post("/api/v1/pets", pet);
 };
+
+export const updatePet = (pet) => {
+	return fetcher.put(`/api/v1/pets/${pet.id}`, pet);
+};

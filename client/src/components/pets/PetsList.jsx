@@ -5,7 +5,9 @@ import { getPets, deletePetById } from "../../api/pets";
 
 const PetsList = () => {
 	const [showModal, setShowModal] = useState(false);
-	const { data, error } = useSWR("/api/v1/pets", getPets);
+	const { data, error } = useSWR("/api/v1/pets", getPets, {
+		suspense: true,
+	});
 
 	const showModalHandler = () => {
 		setShowModal(true);
@@ -24,13 +26,13 @@ const PetsList = () => {
 	}
 
 	return (
-		<div>
+		<div className="container h-screen">
 			<div style={{ display: showModal ? "block" : "none" }}>
 				<FormAddPet setShowModal={setShowModal} />
 			</div>
 			<div style={{ display: showModal ? "none" : "block" }}>
-				<div>
-					<button className="btn-primary btn-md" onClick={showModalHandler}>
+				<div className="mt-5 mb-5">
+					<button className="btn btn-primary btn-md" onClick={showModalHandler}>
 						Add Pet +
 					</button>
 				</div>
@@ -56,11 +58,14 @@ const PetsList = () => {
 								<td>{pet.breed}</td>
 								<td>{pet.description}</td>
 								<td>
-									<button
-										className="btn-warning btn-md"
-										onClick={() => handleDelete(pet._id)}>
-										Delete
-									</button>
+									<div className="btn-group">
+										<button className="btn btn-warning btn-md">Edit</button>
+										<button
+											className="btn btn-error btn-md"
+											onClick={() => handleDelete(pet._id)}>
+											Delete
+										</button>
+									</div>
 								</td>
 							</tr>
 						))}
