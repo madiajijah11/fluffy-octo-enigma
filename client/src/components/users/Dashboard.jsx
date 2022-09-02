@@ -39,9 +39,6 @@ export default function Dashboard() {
 							<a>Pets</a>
 						</li>
 						<li>
-							<a>Goodie</a>
-						</li>
-						<li>
 							<a onClick={() => Logout()}>Logout</a>
 						</li>
 					</ul>

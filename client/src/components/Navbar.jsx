@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const themes = [
 	"light",
 	"dark",
@@ -65,15 +67,15 @@ export default function NavigationBar() {
 					</li>
 					{users ? (
 						<li>
-							<a href="/dashboard">Dashboard</a>
+							<Link to={"/dashboard"}>Dashboard</Link>
 						</li>
 					) : (
 						<>
 							<li>
-								<a href="/signin">Sign in</a>
+								<Link to={"/signin"}>Sign in</Link>
 							</li>
 							<li>
-								<a href="/signup">Sign up</a>
+								<Link to={"/signup"}>Sign up</Link>
 							</li>
 						</>
 					)}

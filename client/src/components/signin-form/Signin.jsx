@@ -2,8 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import fetcher from "../../lib/axiosInstance";
 import { GrFormView, GrFormViewHide } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
-import useSWR from "swr";
-import { userLogin } from "../../api/users";
 import sessionToken from "../../lib/sessionToken";
 
 export default function Signin() {
@@ -28,7 +26,7 @@ export default function Signin() {
 			sessionStorage.setItem("user", JSON.stringify(data));
 			setIsSuccess(true);
 			setIsError(false);
-			navigate("/dashboard");
+			navigate("/");
 		} catch (error) {
 			setIsSuccess(false);
 			setIsError(true);
@@ -41,7 +39,7 @@ export default function Signin() {
 
 	useEffect(() => {
 		if (user) {
-			navigate("/dashboard");
+			navigate("/");
 		}
 	}, []);
 

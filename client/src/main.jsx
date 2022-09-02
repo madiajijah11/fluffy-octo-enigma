@@ -18,6 +18,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<Route path="/signin" element={<Signin />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/dashboard" element={<Dashboard />} />
+					<Route
+						path="*"
+						element={
+							<h1 className="text-center font-extrabold justify-center h-screen">
+								Page not found 404.
+							</h1>
+						}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</SWRConfig>

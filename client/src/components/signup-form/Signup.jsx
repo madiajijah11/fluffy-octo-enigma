@@ -34,7 +34,6 @@ export default function Signup() {
 			});
 			setIsSuccess(true);
 			setIsError(false);
-
 			nameRef.current.value = "";
 			emailRef.current.value = "";
 			passwordRef.current.value = "";
@@ -50,7 +49,7 @@ export default function Signup() {
 
 	useEffect(() => {
 		if (user) {
-			navigate("/dashboard");
+			navigate("/");
 		}
 	}, []);
 

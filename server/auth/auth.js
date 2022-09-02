@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
 	jwt.verify(token, process.env.SECRET, (err, decoded) => {
 		if (!decoded) {
 			return res.status(401).json({
-				message: "Failed to authenticate token.",
+				message: "Token expired.",
 			});
 		}
 		if (err) {

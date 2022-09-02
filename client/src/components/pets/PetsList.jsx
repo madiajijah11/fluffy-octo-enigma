@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FormAddPet from "./FormAddPet";
+import FormAddPet from "./AddPetModal";
 import useSWR from "swr";
 import { getPets, deletePetById } from "../../api/pets";
 
