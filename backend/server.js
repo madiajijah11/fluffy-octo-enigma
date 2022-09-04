@@ -20,9 +20,9 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use("/api", petsRoutes);
 app.use("/", auth);
-app.use("/api/v1", verifyToken, usersRoutes, petsRoutes);
+app.use("/api/v1", usersRoutes, petsRoutes);
+// app.use("/api/v1", verifyToken, usersRoutes, petsRoutes);
 
 app.route("/").get((_req, res) => {
 	res.sendFile(`${process.cwd()}/index.html`);

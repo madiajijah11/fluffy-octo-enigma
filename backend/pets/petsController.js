@@ -1,13 +1,14 @@
 const Pets = require("./petsModel");
 
 const newPets = (req, res, _next) => {
-	const { name, age, type, breed, description } = req.body;
-	if (!name || !age || !type || !breed || !description) {
+	const { src, name, age, type, breed, description } = req.body;
+	if (!src || !name || !age || !type || !breed || !description) {
 		return res.status(400).json({
 			message: "Please fill all fields",
 		});
 	}
 	const newPets1 = new Pets({
+		src: src,
 		name: name,
 		age: age,
 		type: type,
@@ -42,7 +43,7 @@ const getPets = (_req, res, _next) => {
 	});
 };
 
-const getPetsById = (req, res, _next) => {
+const getPetById = (req, res, _next) => {
 	const { id } = req.params;
 	if (!id) {
 		return res.status(400).json({
@@ -81,4 +82,4 @@ const deletePetById = (req, res, _next) => {
 	});
 };
 
-module.exports = { newPets, getPets, getPetsById, deletePetById };
+module.exports = { newPets, getPets, getPetById, deletePetById };
