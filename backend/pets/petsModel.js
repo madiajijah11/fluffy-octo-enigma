@@ -8,7 +8,7 @@ const PetsSchema = new mongoose.Schema(
 		breed: String,
 		description: String,
 	},
-	{ timestamp: true }
+	{ timestamps: true }
 );
 
 const Pets = mongoose.model("Pets", PetsSchema);
