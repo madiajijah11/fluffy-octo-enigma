@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const PetsSchema = new mongoose.Schema(
 	{
 		src: { type: String, required: true },
+		height: { type: Number, required: true },
+		width: { type: Number, required: true },
 		name: { type: String, required: true },
 		age: { type: Number, required: true },
 		type: { type: String, required: true },

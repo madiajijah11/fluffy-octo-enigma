@@ -14,8 +14,8 @@ const newUsers = (req, res, _next) => {
 			message: "Passwords do not match",
 		});
 	}
-	Users.findOne({ email: email }, (err, data) => {
-		if (err) {
+	Users.findOne({ email }, (error, data) => {
+		if (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
 			});
@@ -28,12 +28,12 @@ const newUsers = (req, res, _next) => {
 		const salt = bcryptjs.genSaltSync(10);
 		const hash = bcryptjs.hashSync(password, salt);
 		const newUsers1 = new Users({
-			name: name,
-			email: email,
+			name,
+			email,
 			password: hash,
 		});
-		newUsers1.save((err1) => {
-			if (err1) {
+		newUsers1.save((error1) => {
+			if (error1) {
 				return res.status(500).json({
 					message: "Something went wrong",
 				});
@@ -46,8 +46,8 @@ const newUsers = (req, res, _next) => {
 };
 
 const getUsers = (_req, res, _next) => {
-	Users.find({}, (err, data) => {
-		if (err) {
+	Users.find({}, (error, data) => {
+		if (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
 			});
@@ -62,8 +62,8 @@ const getUsers = (_req, res, _next) => {
 };
 
 const deleteUsers = (_req, res, _next) => {
-	Users.deleteMany({}, (err) => {
-		if (err) {
+	Users.deleteMany({}, (error) => {
+		if (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
 			});
@@ -81,8 +81,8 @@ const loginUsers = (req, res, _next) => {
 			message: "Please fill all fields",
 		});
 	}
-	Users.findOne({ email: email }, (err, data) => {
-		if (err) {
+	Users.findOne({ email }, (error, data) => {
+		if (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
 			});
@@ -111,7 +111,7 @@ const loginUsers = (req, res, _next) => {
 		return res.status(200).json({
 			name: data.name,
 			email: data.email,
-			token: token,
+			token,
 		});
 	});
 };
@@ -124,8 +124,8 @@ const logoutUsers = (req, res, next) => {
 			message: "Please provide a token",
 		});
 	}
-	jwt.verify(token, process.env.SECRET, (err, decoded) => {
-		if (err) {
+	jwt.verify(token, process.env.SECRET, (error, decoded) => {
+		if (error) {
 			return res.status(401).json({
 				message: "Invalid token",
 			});
@@ -139,8 +139,8 @@ const logoutUsers = (req, res, next) => {
 // get user by email
 const getUsersByEmail = (req, res, _next) => {
 	const { email } = req.params;
-	Users.findOne({ email: email }, (err, data) => {
-		if (err) {
+	Users.findOne({ email }, (error, data) => {
+		if (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
 			});

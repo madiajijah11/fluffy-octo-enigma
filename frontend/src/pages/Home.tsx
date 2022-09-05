@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import Gallery from "react-photo-gallery";
-import { photos } from "../dummy/photos";
+import AddPet from "../components/pets/AddPet";
+// import { photos } from "../dummy/photos";
 
 const Home = () => {
 	const [petData, setPetData]: any = useState([]);
+	const [isShowAddPetForm, setIsShowAddPetForm] = useState(false);
 
 	useEffect(() => {
 		const fetchPets = async () => {
-			const res = await fetch("http://localhost:3000/api/v1/pets");
+			const res = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
 			const pets = await res.json();
-			console.log(pets);
 
 			if (res.ok) {
 				setPetData(pets);
@@ -19,10 +20,20 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div>
-			<h1 className="text-9xl text-center font-bold">Home</h1>
-			<Gallery photos={photos} />
-		</div>
+		<>
+			<div className="flex flex-col">
+				<h4 className="text-4xl text-center">Ours Lovely Pets</h4>
+				<button
+					onClick={() => setIsShowAddPetForm(true)}
+					className="btn btn-accent btn-sm self-end my-5 mx-5">
+					Add your favorite pet
+				</button>
+			</div>
+			<div>
+				{isShowAddPetForm && <AddPet setIsShowAddPetForm={setIsShowAddPetForm} />}
+				<Gallery photos={petData} />
+			</div>
+		</>
 	);
 };
 

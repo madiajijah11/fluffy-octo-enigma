@@ -36,7 +36,7 @@ const Navbar = () => {
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
-				<a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+				<a className="btn btn-ghost normal-case text-xl">Pets</a>
 			</div>
 			<div className="flex-none">
 				<div className="dropdown dropdown-end mr-1">
@@ -88,12 +88,12 @@ const Navbar = () => {
 				</div>
 				<ul className="menu menu-horizontal p-0">
 					<li>
-						<Link className="btn btn-outline mr-1" to="#">
+						<Link className="btn btn-primary btn-outline mr-1" to="#">
 							Sign In
 						</Link>
 					</li>
 					<li>
-						<Link className="btn btn-outline mr-1" to="#">
+						<Link className="btn btn-secondary btn-outline mr-1" to="#">
 							Sign Up
 						</Link>
 					</li>
