@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import Gallery from "react-photo-gallery";
 import AddPet from "../components/pets/AddPet";
-// import { photos } from "../dummy/photos";
+import { usePetsContext } from "../hooks/usePets";
 
 const Home = () => {
-	const [petData, setPetData]: any = useState([]);
+	const { pets, dispatch } = usePetsContext();
+
 	const [isShowAddPetForm, setIsShowAddPetForm] = useState(false);
 
 	useEffect(() => {
 		const fetchPets = async () => {
-			const res = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
-			const pets = await res.json();
+			const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
+			const result = await response.json();
 
-			if (res.ok) {
-				setPetData(pets);
+			if (response.ok) {
+				dispatch({ type: "SET_PETS", payload: result });
+			}
+			if (!response.ok) {
+				console.log(result.message);
 			}
 		};
 		fetchPets();
 	}, []);
+
+	console.log(pets);
 
 	return (
 		<>
@@ -31,7 +37,7 @@ const Home = () => {
 			</div>
 			<div>
 				{isShowAddPetForm && <AddPet setIsShowAddPetForm={setIsShowAddPetForm} />}
-				<Gallery photos={petData} />
+				<Gallery photos={pets} />
 			</div>
 		</>
 	);

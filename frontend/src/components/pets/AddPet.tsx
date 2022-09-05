@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./AddPet.css";
+import { usePetsContext } from "../../hooks/usePets";
 
 const AddPet = ({ setIsShowAddPetForm }: any) => {
+	const { dispatch } = usePetsContext();
+
 	const [src, setSrc] = useState("");
 	const [name, setName] = useState("");
 	const [age, setAge] = useState("");
@@ -27,13 +30,14 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 		}
 
 		if (response.ok) {
-			setIsShowAddPetForm(false);
+			dispatch({ type: "ADD_PET", payload: result });
 			setSrc("");
 			setName("");
 			setAge("");
 			setType("");
 			setBreed("");
 			setDescription("");
+			setIsShowAddPetForm(false);
 		}
 	};
 
@@ -54,7 +58,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 							</label>
 							<input
 								name="src"
-								type="text"
+								type="url"
 								className="input input-bordered"
 								value={src}
 								onChange={(event) => setSrc(event.target.value)}
@@ -129,7 +133,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 							/>
 						</div>
 						<div className="form-control">
-							<button type="submit" className="btn btn-primary mt-3">
+							<button type="submit" className="btn btn-success mt-3">
 								Post your favorite pet, let people know!
 							</button>
 						</div>
