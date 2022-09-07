@@ -1,0 +1,392 @@
+[{
+  "_id": {
+    "$oid": "63157b46db14ed07da478a83"
+  },
+  "src": "https://www.balisafarimarinepark.com/wp-content/uploads/2022/08/VIER-PFOTEN_2016-07-08_011-4993x3455-1920x1329-1.jpg",
+  "height": 2,
+  "width": 4,
+  "name": "Abu-abu",
+  "age": 9,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Berasal dari Bali Safari Park",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352198252"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352198252"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157b70db14ed07da478a86"
+  },
+  "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg",
+  "height": 2,
+  "width": 3,
+  "name": "Abu-abu di salju",
+  "age": 14,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Berasal musim dingin",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352240199"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352240199"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157b75db14ed07da478a88"
+  },
+  "src": "https://cdn-japantimes.com/wp-content/uploads/2022/05/np_file_159370.jpeg",
+  "height": 2,
+  "width": 4,
+  "name": "Dua kucing lagi bersantai",
+  "age": 17,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Kucing rumahan",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352245102"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352245102"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157c22db14ed07da478a95"
+  },
+  "src": "https://ichef.bbci.co.uk/news/976/cpsprodpb/C17B/production/_126313594_gettyimages-1217576289.jpg",
+  "height": 1,
+  "width": 4,
+  "name": "Si putih oren",
+  "age": 8,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Kena lockdown di jerman",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352418727"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352418727"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157ca0db14ed07da478a99"
+  },
+  "src": "https://media.wired.com/photos/5e1e646743940d0008009167/master/pass/Science_Cats-84873657.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Kriminal Austrlia",
+  "age": 10,
+  "type": "Cat",
+  "breed": "Angora",
+  "description": "Penyebab kebakaran hutan Australia",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352544503"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352544503"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157d05db14ed07da478a9f"
+  },
+  "src": "http://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg",
+  "height": 1,
+  "width": 4,
+  "name": "Oren Cemerlang",
+  "age": 8,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Di taman rumput",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352645193"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352645193"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157d32db14ed07da478aa1"
+  },
+  "src": "https://d.newsweek.com/en/full/2090958/two-identical-cats-cuddling-bed.png",
+  "height": 2,
+  "width": 4,
+  "name": "Kucing kembar",
+  "age": 2,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Lagi tidur bersama",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352690324"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352690324"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63157d88db14ed07da478aa3"
+  },
+  "src": "https://media.salon.com/2022/05/cats-party-0516221.jpg",
+  "height": 2,
+  "width": 4,
+  "name": "Putih hitam, abu-abu dan putih coklat",
+  "age": 10,
+  "type": "Cat",
+  "breed": "Kampung dan Angora",
+  "description": "Berpesta di taman",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662352776334"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662352776334"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63158525d7b602850d0a5fe5"
+  },
+  "src": "https://cdn.sci.news/images/enlarge6/image_7867e-Cats.jpg",
+  "height": 2,
+  "width": 4,
+  "name": "4 anak kucing abu-abu",
+  "age": 2,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "di ruang tamu",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662354725657"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662354725657"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63158abb232ddf419ced11d5"
+  },
+  "src": "https://blog.playstation.com/tachyon/2022/07/636d3b43e1bdd624ee7f8344abe2e12dfb82d3af.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Gamer cat",
+  "age": 9,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "Lagi main playstation nih",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662356155455"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662356155455"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "631601bc9575094ca2547aaf"
+  },
+  "src": "https://www.gannett-cdn.com/presto/2022/05/25/USAT/719946ca-660e-4ebf-805a-2c3b7d221a85-Hero-3.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Si Gendut",
+  "age": 17,
+  "type": "Kampung",
+  "breed": "Kampung",
+  "description": "Kucing yang bernama gendut",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662386620981"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662386620981"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63161d8acceb5fe4c1c16fda"
+  },
+  "src": "https://www.rd.com/wp-content/uploads/2021/01/GettyImages-1175550351.jpg",
+  "height": 2,
+  "width": 4,
+  "name": "Si Hitam Kurus",
+  "age": 10,
+  "type": "Cat",
+  "breed": "Kampung",
+  "description": "si kucing hitam yg kurus meninggal",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662393738030"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662393738030"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6316f10bc1206c886aa89b4d"
+  },
+  "src": "https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/images/cat-and-dog-happy.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Anjing coklat dan kucing hitam-putih",
+  "age": 13,
+  "type": "Kucing dan Anjing",
+  "breed": "Anjing rumahan dan kucing angora",
+  "description": "mereka berdua laagi bersantai bersama",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662447883426"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662447883426"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6316f200c1206c886aa89b52"
+  },
+  "src": "https://t3.ftcdn.net/jpg/02/67/19/24/360_F_267192437_BwLqrL4cYk5swbHjKzfaOINH4uKBxzNy.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Milky",
+  "age": 7,
+  "type": "Kelinci",
+  "breed": "Hollland Lop",
+  "description": "kelinci kesayangan kakak",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662448128954"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662448128954"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6316f43dc1206c886aa89b60"
+  },
+  "src": "https://upload.wikimedia.org/wikipedia/commons/8/85/Iguana_iguana.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Iguana Hijau",
+  "age": 9,
+  "type": "Iguana",
+  "breed": "Biasa",
+  "description": "iguana yang bisa nyamar dengan tempatnya",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662448701525"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662448701525"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6316fd064d10da19b9c5b321"
+  },
+  "src": "https://foresteract.com/wp-content/uploads/2022/06/iguana.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Green iguana",
+  "age": 8,
+  "type": "Iguana",
+  "breed": "Normal",
+  "description": "iguana hutan hujan",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662450950786"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662450950786"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6316fdd088c01c4e7f0914f0"
+  },
+  "src": "https://statik.tempo.co/data/2020/03/14/id_923158/923158_720.jpg",
+  "height": 1,
+  "width": 3,
+  "name": "Blue iguana",
+  "age": 6,
+  "type": "Iguana",
+  "breed": "Normal",
+  "description": "iguana es warna biru",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662451152912"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662451152912"
+    }
+  },
+  "__v": 0
+}]

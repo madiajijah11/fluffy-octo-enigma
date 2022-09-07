@@ -37,7 +37,7 @@ const Home = () => {
 			</div>
 			<div>
 				{isShowAddPetForm && <AddPet setIsShowAddPetForm={setIsShowAddPetForm} />}
-				<Gallery photos={pets} />
+				{pets ? <Gallery photos={pets} /> : <progress className="progress w-56" />}
 			</div>
 		</>
 	);

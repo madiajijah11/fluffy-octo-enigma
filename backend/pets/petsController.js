@@ -1,36 +1,37 @@
 const Pets = require("./petsModel");
 
-const newPets = (req, res, _next) => {
+const newPet = async (req, res, _next) => {
 	const { src, name, age, type, breed, description } = req.body;
-	if (!src || !name || !age || !type || !breed || !description) {
+
+	const height = Math.floor(Math.random() * 2) + 1;
+	const width = height === 1 ? 3 : 4;
+
+	if (!src || !height || !width || !name || !age || !type || !breed || !description) {
 		return res.status(400).json({
 			message: "Please fill all fields",
 		});
 	}
 
-	const height = Math.floor(Math.random() * 2) + 1;
-	const width = height === 1 ? 3 : 4;
-
-	const newPets1 = new Pets({
-		src,
-		height,
-		width,
-		name,
-		age,
-		type,
-		breed,
-		description,
-	});
-	newPets1.save((error) => {
-		if (error) {
-			return res.status(500).json({
-				message: "Something went wrong",
-			});
-		}
+	try {
+		const newPets1 = new Pets({
+			src,
+			height,
+			width,
+			name,
+			age,
+			type,
+			breed,
+			description,
+		});
+		await newPets1.save();
 		return res.status(201).json({
 			message: "Pet created successfully",
 		});
-	});
+	} catch (error) {
+		return res.status(500).json({
+			message: "Something went wrong",
+		});
+	}
 };
 
 const getPets = (_req, res, _next) => {
@@ -91,4 +92,40 @@ const deletePetById = (req, res, _next) => {
 	});
 };
 
-module.exports = { newPets, getPets, getPetById, deletePetById };
+const updatePetById = (req, res, next) => {
+	const { id } = req.params;
+	const { src, name, age, type, breed, description } = req.body;
+
+	if (!src || !name || !age || !type || !breed || !description) {
+		return res.status(400).json({
+			message: "Please fill all fields",
+		});
+	}
+
+	Pets.findByIdAndUpdate(
+		{ _id: id },
+		{
+			src,
+			name,
+			age,
+			type,
+			breed,
+			description,
+		},
+		(error, data) => {
+			if (error) {
+				return res.status(500).json({
+					message: "Something went wrong",
+				});
+			}
+			if (!data) {
+				return res.status(404).json({
+					message: "No pets found",
+				});
+			}
+			return res.status(200).json(data);
+		}
+	);
+};
+
+module.exports = { newPet, getPets, getPetById, deletePetById, updatePetById };

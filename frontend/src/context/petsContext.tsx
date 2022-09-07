@@ -12,10 +12,10 @@ export const usePetsReducer = (state: { pets: any }, action: { type: any; payloa
 			return {
 				pets: [action.payload, ...state.pets],
 			};
-		// case "DELETE_PET":
-		// 	return {
-		// 		pets: state.pets.filter((pet: any) => pet.id !== action.payload),
-		// 	};
+		case "DELETE_PET":
+			return {
+				pets: state.pets.filter((pet: any) => pet._id !== action.payload._id),
+			};
 		// case "UPDATE_PET":
 		// 	return {
 		// 		pets: state.pets.map((pet: any) =>

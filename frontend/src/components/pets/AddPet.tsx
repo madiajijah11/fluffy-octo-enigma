@@ -13,6 +13,9 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const [description, setDescription] = useState("");
 	const [error, setError] = useState(null);
 
+	// const height = Math.floor(Math.random() * 2) + 1;
+	// const width = height === 1 ? 3 : 4;
+
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		const pet = { src, name, age, type, breed, description };
