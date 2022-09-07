@@ -7,10 +7,11 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 
 	const [src, setSrc] = useState("");
 	const [name, setName] = useState("");
-	const [age, setAge] = useState("");
+	const [age, setAge] = useState(0);
 	const [type, setType] = useState("");
 	const [breed, setBreed] = useState("");
 	const [description, setDescription] = useState("");
+	const [owner, setOwner] = useState("");
 	const [error, setError] = useState(null);
 
 	// const height = Math.floor(Math.random() * 2) + 1;
@@ -18,7 +19,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
-		const pet = { src, name, age, type, breed, description };
+		const pet = { src, name, age, type, breed, description, owner };
 		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`, {
 			method: "POST",
 			headers: {
@@ -29,14 +30,14 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 		const result = await response.json();
 
 		if (!response.ok) {
-			setError(result.message);
+			setError(result);
 		}
 
 		if (response.ok) {
 			dispatch({ type: "ADD_PET", payload: result });
 			setSrc("");
 			setName("");
-			setAge("");
+			setAge(0);
 			setType("");
 			setBreed("");
 			setDescription("");
@@ -90,7 +91,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								type="number"
 								className="input input-bordered"
 								value={age}
-								onChange={(event) => setAge(event.target.value)}
+								onChange={(event) => setAge(parseInt(event.target.value))}
 								required
 							/>
 						</div>
@@ -132,6 +133,19 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								rows={5}
 								value={description}
 								onChange={(event) => setDescription(event.target.value)}
+								required
+							/>
+						</div>
+						<div className="form-control">
+							<label className="label">
+								<span className="label-text">Pet Owner</span>
+							</label>
+							<input
+								name="owner"
+								type="email"
+								className="input input-bordered"
+								value={owner}
+								onChange={(event) => setOwner(event.target.value)}
 								required
 							/>
 						</div>

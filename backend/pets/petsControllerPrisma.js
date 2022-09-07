@@ -43,7 +43,11 @@ const newPet = async (req, res) => {
 
 const getPets = async (_req, res) => {
 	try {
-		const pets = await prisma.Pet.findMany();
+		const pets = await prisma.Pet.findMany({
+			orderBy: {
+				createdAt: "desc",
+			},
+		});
 		res.status(200).json(pets);
 	} catch (error) {
 		res.status(500).json({

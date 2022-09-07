@@ -23,8 +23,6 @@ const Home = () => {
 		fetchPets();
 	}, []);
 
-	console.log(pets);
-
 	return (
 		<>
 			<div className="flex flex-col">
