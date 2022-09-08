@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./AddPet.css";
-import { usePetsContext } from "../../hooks/usePets";
+import { usePetsContext } from "../../hooks/usePetsContext";
 
 const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const { dispatch } = usePetsContext();
@@ -14,11 +14,8 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const [owner, setOwner] = useState("");
 	const [error, setError] = useState(null);
 
-	// const height = Math.floor(Math.random() * 2) + 1;
-	// const width = height === 1 ? 3 : 4;
-
-	const handleSubmit = async (e: any) => {
-		e.preventDefault();
+	const handleSubmit = async (event: any) => {
+		event.preventDefault();
 		const pet = { src, name, age, type, breed, description, owner };
 		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`, {
 			method: "POST",
@@ -28,11 +25,9 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 			body: JSON.stringify(pet),
 		});
 		const result = await response.json();
-
 		if (!response.ok) {
 			setError(result);
 		}
-
 		if (response.ok) {
 			dispatch({ type: "ADD_PET", payload: result });
 			setSrc("");

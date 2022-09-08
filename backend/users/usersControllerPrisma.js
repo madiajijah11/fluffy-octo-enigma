@@ -1,7 +1,15 @@
 const bcryptjs = require("bcryptjs");
 const { PrismaClient } = require("@prisma/client");
+const validator = require("validator");
+const jwt = require("jsonwebtoken");
 
 const prisma = new PrismaClient();
+
+const createToken = (_id) => {
+	return jwt.sign({ _id }, process.env.SECRET, {
+		expiresIn: "3d",
+	});
+};
 
 const getUsers = async (_req, res) => {
 	try {
@@ -30,26 +38,33 @@ const newUsers = async (req, res) => {
 			message: "Please fill all fields",
 		});
 	}
+	if (!validator.isEmail(email)) {
+		return res.status(400).json({
+			message: "Please enter a valid email",
+		});
+	}
+	if (!validator.isStrongPassword(password)) {
+		return res.status(400).json({
+			message:
+				"Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number and one special character",
+		});
+	}
 	if (password !== confirmPassword) {
 		return res.status(400).json({
 			message: "Passwords do not match",
 		});
 	}
-
 	const user = await prisma.User.findUnique({
 		where: {
 			email,
 		},
 	});
-
 	if (user) {
 		return res.status(400).json({
 			message: "User already exists",
 		});
 	}
-
 	const hashedPassword = bcryptjs.hashSync(password, 10);
-
 	try {
 		const newUser = await prisma.User.create({
 			data: {
@@ -58,7 +73,8 @@ const newUsers = async (req, res) => {
 				password: hashedPassword,
 			},
 		});
-		return res.status(201).json(newUser);
+		const token = createToken(newUser._id);
+		return res.status(201).json({ email, token });
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something went wrong",
@@ -67,4 +83,43 @@ const newUsers = async (req, res) => {
 	}
 };
 
-module.exports = { getUsers, newUsers };
+const loginUsers = async (req, res) => {
+	const { email, password } = req.body;
+	if (!email || !password) {
+		return res.status(400).json({
+			message: "Please fill all fields",
+		});
+	}
+	if (!validator.isEmail(email)) {
+		return res.status(400).json({
+			message: "Please enter a valid email",
+		});
+	}
+	const user = await prisma.User.findUnique({
+		where: {
+			email,
+		},
+	});
+	if (!user) {
+		return res.status(400).json({
+			message: "Invalid credentials",
+		});
+	}
+	const passwordMatch = bcryptjs.compareSync(password, user.password);
+	if (!passwordMatch) {
+		return res.status(400).json({
+			message: "Invalid credentials",
+		});
+	}
+	try {
+		const token = createToken(user._id);
+		return res.status(200).json({ email, token });
+	} catch (error) {
+		return res.status(500).json({
+			message: "Something went wrong",
+			error: error.message,
+		});
+	}
+};
+
+module.exports = { getUsers, newUsers, loginUsers };

@@ -6,7 +6,8 @@ const usersController = require("./usersController");
 const usersControllerPrisma = require("./usersControllerPrisma");
 
 router.get("/users", usersControllerPrisma.getUsers);
-router.post("/users", usersControllerPrisma.newUsers);
+router.post("/users/signup", usersControllerPrisma.newUsers);
+router.post("/users/login", usersControllerPrisma.loginUsers);
 
 // router.get("/users", usersController.getUsers); // Get all users
 // router.post("/users", (_req, res, _next) => {

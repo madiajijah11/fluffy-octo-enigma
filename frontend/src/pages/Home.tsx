@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Gallery from "react-photo-gallery";
 import AddPet from "../components/pets/AddPet";
-import { usePetsContext } from "../hooks/usePets";
+import { usePetsContext } from "../hooks/usePetsContext";
 
 const Home = () => {
 	const { pets, dispatch } = usePetsContext();
@@ -12,7 +12,6 @@ const Home = () => {
 		const fetchPets = async () => {
 			const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
 			const result = await response.json();
-
 			if (response.ok) {
 				dispatch({ type: "SET_PETS", payload: result });
 			}
