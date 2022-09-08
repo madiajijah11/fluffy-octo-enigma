@@ -11,7 +11,7 @@ const getUsers = async (_req, res) => {
 				name: true,
 				email: true,
 				password: false,
-				pets: true,
+				pets: false,
 			},
 		});
 		return res.status(200).json(users);

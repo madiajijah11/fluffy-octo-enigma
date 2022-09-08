@@ -1,19 +1,21 @@
 const express = require("express");
 const helmet = require("helmet");
 const compression = require("compression");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const morgan = require("morgan");
 
 const usersRoutes = require("./users/usersRoute");
 const auth = require("./auth/authRoute");
-const verifyToken = require("./auth/auth");
+// const verifyToken = require("./auth/auth");
 const petsRoutes = require("./pets/petsRoute");
 
 dotenv.config("./.env");
 
 const app = express();
 
+app.use(morgan("dev"));
 app.use(cors());
 app.use(helmet());
 app.use(compression());
