@@ -61,7 +61,7 @@ const newUsers = async (req, res) => {
 	});
 	if (user) {
 		return res.status(400).json({
-			message: "User already exists",
+			message: "Email already used",
 		});
 	}
 	const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -74,7 +74,7 @@ const newUsers = async (req, res) => {
 			},
 		});
 		const token = createToken(newUser._id);
-		return res.status(201).json({ email, token });
+		return res.status(201).json({ name, email, token });
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something went wrong",
@@ -83,7 +83,7 @@ const newUsers = async (req, res) => {
 	}
 };
 
-const loginUsers = async (req, res) => {
+const signinUsers = async (req, res) => {
 	const { email, password } = req.body;
 	if (!email || !password) {
 		return res.status(400).json({
@@ -113,7 +113,8 @@ const loginUsers = async (req, res) => {
 	}
 	try {
 		const token = createToken(user._id);
-		return res.status(200).json({ email, token });
+		const name = user.name;
+		return res.status(200).json({ name, email, token });
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something went wrong",
@@ -122,4 +123,4 @@ const loginUsers = async (req, res) => {
 	}
 };
 
-module.exports = { getUsers, newUsers, loginUsers };
+module.exports = { getUsers, newUsers, signinUsers };

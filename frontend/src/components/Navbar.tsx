@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useSignout } from "../hooks/useSignout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const themes = [
 	"light",
@@ -33,6 +35,13 @@ const themes = [
 ];
 
 const Navbar = () => {
+	const { signout } = useSignout();
+	const { user } = useAuthContext();
+
+	const handleClick = () => {
+		signout();
+	};
+
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">
@@ -89,16 +98,29 @@ const Navbar = () => {
 					</div>
 				</div>
 				<ul className="menu menu-horizontal p-0">
-					<li>
-						<Link className="btn btn-primary btn-outline mr-1" to="/signin">
-							Sign In
-						</Link>
-					</li>
-					<li>
-						<Link className="btn btn-secondary btn-outline mr-1" to="/signup">
-							Sign Up
-						</Link>
-					</li>
+					{user ? (
+						<li>
+							<span>Hi, {user.name}</span>
+							<button
+								className="btn btn-error btn-outline mr-1"
+								onClick={handleClick}>
+								Log out
+							</button>
+						</li>
+					) : (
+						<>
+							<li>
+								<Link className="btn btn-primary btn-outline mr-1" to="/signin">
+									Sign In
+								</Link>
+							</li>
+							<li>
+								<Link className="btn btn-secondary btn-outline mr-1" to="/signup">
+									Sign Up
+								</Link>
+							</li>
+						</>
+					)}
 				</ul>
 			</div>
 		</div>

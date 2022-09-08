@@ -1,12 +1,15 @@
 import { FormEvent, useState } from "react";
+import { useSignin } from "../hooks/useSignin";
 
 const Signin = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const { signin, error, loading } = useSignin();
+
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(email, password);
+		await signin(email, password);
 	};
 
 	return (
@@ -55,7 +58,14 @@ const Signin = () => {
 							</label>
 						</div>
 						<div className="form-control mt-6">
-							<button className="btn btn-primary">Login</button>
+							<button className="btn btn-primary" disabled={loading}>
+								Login
+							</button>
+							{error && (
+								<div className="alert alert-error shadow-lg mt-2">
+									<span>{error}</span>
+								</div>
+							)}
 						</div>
 					</div>
 				</form>
