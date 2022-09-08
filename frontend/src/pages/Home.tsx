@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Gallery from "react-photo-gallery";
 import AddPet from "../components/pets/AddPet";
 import { usePetsContext } from "../hooks/usePetsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
 	const { pets, dispatch } = usePetsContext();
+	const { user } = useAuthContext();
 
 	const [isShowAddPetForm, setIsShowAddPetForm] = useState(false);
 
@@ -25,12 +27,15 @@ const Home = () => {
 	return (
 		<>
 			<div className="flex flex-col">
-				<h4 className="text-4xl text-center">Ours Lovely Pets</h4>
-				<button
-					onClick={() => setIsShowAddPetForm(true)}
-					className="btn btn-accent btn-sm self-end my-5 mx-5">
-					Add your favorite pet
-				</button>
+				<h4 className="text-4xl text-center my-2">Ours Lovely Pets</h4>
+				{user && (
+					<button
+						onClick={() => setIsShowAddPetForm(true)}
+						className="btn btn-accent btn-sm self-end mx-5">
+						Post your favorite pet
+					</button>
+				)}
+				<hr className="my-2" />
 			</div>
 			<div>
 				{isShowAddPetForm && <AddPet setIsShowAddPetForm={setIsShowAddPetForm} />}

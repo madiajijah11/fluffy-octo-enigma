@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./AddPet.css";
 import { usePetsContext } from "../../hooks/usePetsContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const { dispatch } = usePetsContext();
+	const { user } = useAuthContext();
 
 	const [src, setSrc] = useState("");
 	const [name, setName] = useState("");
@@ -11,12 +13,11 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const [type, setType] = useState("");
 	const [breed, setBreed] = useState("");
 	const [description, setDescription] = useState("");
-	const [owner, setOwner] = useState("");
 	const [error, setError] = useState(null);
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
-		const pet = { src, name, age, type, breed, description, owner };
+		const pet = { src, name, age, type, breed, description, owner: user?.email };
 		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`, {
 			method: "POST",
 			headers: {
@@ -62,6 +63,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								value={src}
 								onChange={(event) => setSrc(event.target.value)}
 								required
+								autoComplete="off"
 							/>
 						</div>
 						<div className="form-control">
@@ -75,6 +77,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								value={name}
 								onChange={(event) => setName(event.target.value)}
 								required
+								autoComplete="off"
 							/>
 						</div>
 						<div className="form-control">
@@ -88,6 +91,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								value={age}
 								onChange={(event) => setAge(parseInt(event.target.value))}
 								required
+								autoComplete="off"
 							/>
 						</div>
 						<div className="form-control">
@@ -101,6 +105,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								value={type}
 								onChange={(event) => setType(event.target.value)}
 								required
+								autoComplete="off"
 							/>
 						</div>
 						<div className="form-control">
@@ -114,6 +119,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								value={breed}
 								onChange={(event) => setBreed(event.target.value)}
 								required
+								autoComplete="off"
 							/>
 						</div>
 						<div className="form-control">
@@ -123,9 +129,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 							<textarea
 								className="textarea textarea-bordered"
 								name="description"
-								id=""
-								cols={10}
-								rows={5}
+								rows={3}
 								value={description}
 								onChange={(event) => setDescription(event.target.value)}
 								required
@@ -139,9 +143,9 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 								name="owner"
 								type="email"
 								className="input input-bordered"
-								value={owner}
-								onChange={(event) => setOwner(event.target.value)}
+								value={user.email}
 								required
+								disabled
 							/>
 						</div>
 						<div className="form-control">

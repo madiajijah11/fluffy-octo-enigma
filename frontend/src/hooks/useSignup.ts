@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const useSignup = () => {
 	const { dispatch } = useAuthContext();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
+
+	const navigate = useNavigate();
 
 	const signup = async (
 		name: string,
@@ -30,6 +33,7 @@ export const useSignup = () => {
 			sessionStorage.setItem("user", JSON.stringify(data));
 			dispatch({ type: "LOGIN", payload: data });
 			setLoading(false);
+			navigate("/");
 		}
 	};
 	return { loading, error, signup };

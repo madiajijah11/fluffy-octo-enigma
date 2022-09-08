@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const useSignin = () => {
 	const { dispatch } = useAuthContext();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
 	const signin = async (email: string, password: string) => {
 		setLoading(true);
@@ -25,6 +28,7 @@ export const useSignin = () => {
 			sessionStorage.setItem("user", JSON.stringify(data));
 			dispatch({ type: "LOGIN", payload: data });
 			setLoading(false);
+            navigate("/");
 		}
 	};
 	return { loading, error, signin };
