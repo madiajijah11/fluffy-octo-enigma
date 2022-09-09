@@ -8,7 +8,7 @@ const Home = () => {
 	const { pets, dispatch } = usePetsContext();
 	const { user } = useAuthContext();
 
-	const [isShowAddPetForm, setIsShowAddPetForm] = useState(false);
+	const [isShowAddPetForm, setIsShowAddPetForm] = useState<boolean>(false);
 
 	useEffect(() => {
 		const fetchPets = async () => {

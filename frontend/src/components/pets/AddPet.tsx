@@ -9,18 +9,25 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 
 	const [src, setSrc] = useState("");
 	const [name, setName] = useState("");
-	const [age, setAge] = useState(0);
+	const [age, setAge] = useState<number | string>("");
 	const [type, setType] = useState("");
 	const [breed, setBreed] = useState("");
 	const [description, setDescription] = useState("");
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<string | null>(null);
+	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
+		if (!user) {
+			setError("You must be logged in to post a pet");
+			return;
+		}
+		setLoading(true);
 		const pet = { src, name, age, type, breed, description, owner: user?.email };
 		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`, {
 			method: "POST",
 			headers: {
+				Authorization: `Bearer ${user?.token}`,
 				"Content-type": "application/json",
 			},
 			body: JSON.stringify(pet),
@@ -28,15 +35,17 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 		const result = await response.json();
 		if (!response.ok) {
 			setError(result);
+			setLoading(false);
 		}
 		if (response.ok) {
 			dispatch({ type: "ADD_PET", payload: result });
 			setSrc("");
 			setName("");
-			setAge(0);
+			setAge("");
 			setType("");
 			setBreed("");
 			setDescription("");
+			setLoading(false);
 			setIsShowAddPetForm(false);
 		}
 	};
@@ -149,7 +158,10 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 							/>
 						</div>
 						<div className="form-control">
-							<button type="submit" className="btn btn-success mt-3">
+							<button
+								type="submit"
+								disabled={loading}
+								className="btn btn-success mt-3">
 								Post your favorite pet, let people know!
 							</button>
 						</div>
