@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserPetsContext } from "../hooks/useUserPetsContext";
 import AddPet from "../components/pets/AddPet";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Profile = () => {
 	const { user } = useAuthContext();
 	const { userPets, dispatch }: any = useUserPetsContext();
-
-	const [hasMoreItems, setHasMoreItems] = useState(true);
 	const [isShowAddPetForm, setIsShowAddPetForm] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(true);
@@ -58,12 +55,12 @@ const Profile = () => {
 					</div>
 				)}
 				{error && <h1 className="text-8xl text-center my-2">{error}</h1>}
-				<div className="flex flex-col justify-center content-center">
+				<div className="flex flex-col justify-center content-center items-center">
 					{userPets.map((pet: any) => (
 						<div
 							key={pet.id}
 							className="card card-side bg-base-100 shadow-xl my-3 mx-3"
-							style={{ maxHeight: "300px", maxWidth: "1000px" }}>
+							style={{ maxHeight: "300px" }}>
 							<figure style={{ maxWidth: "500px" }}>
 								<img src={pet.src} alt={pet.name} />
 							</figure>

@@ -11,7 +11,6 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-grid-gallery: ^0.5.6
-  react-infinite-scroll-component: ^6.1.0
   react-photo-gallery: ^8.0.0
   react-router-dom: ^6.3.0
   tailwindcss: ^3.1.8
@@ -24,7 +23,6 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-grid-gallery: 0.5.6_biqbaboplfbrettd7655fr4n2y
-  react-infinite-scroll-component: 6.1.0_react@18.2.0
   react-photo-gallery: 8.0.0_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   theme-change: 2.2.0
@@ -1223,15 +1221,6 @@ packages:
       react-transition-group: 2.9.0_biqbaboplfbrettd7655fr4n2y
     dev: false
 
-  /react-infinite-scroll-component/6.1.0_react@18.2.0:
-    resolution: {integrity: sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==}
-    peerDependencies:
-      react: '>=16.0.0'
-    dependencies:
-      react: 18.2.0
-      throttle-debounce: 2.3.0
-    dev: false
-
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -1437,11 +1426,6 @@ packages:
 
   /theme-change/2.2.0:
     resolution: {integrity: sha512-vvgZEEfmH3yZGq2bWHyzs2AOG1SRfNnCvWbEnPzGpdvvCmAWtOsEdg4H6k/OMapegG+LEQvQ76tQoN9B+FT7rg==}
-    dev: false
-
-  /throttle-debounce/2.3.0:
-    resolution: {integrity: sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==}
-    engines: {node: '>=8'}
     dev: false
 
   /to-fast-properties/2.0.0:
