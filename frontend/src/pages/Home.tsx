@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import Gallery from "react-photo-gallery";
-import AddPet from "../components/pets/AddPet";
 import { usePetsContext } from "../hooks/usePetsContext";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
 	const { pets, dispatch } = usePetsContext();
-	const { user } = useAuthContext();
-
-	const [isShowAddPetForm, setIsShowAddPetForm] = useState<boolean>(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchPets = async () => {
@@ -16,9 +13,11 @@ const Home = () => {
 			const result = await response.json();
 			if (response.ok) {
 				dispatch({ type: "SET_PETS", payload: result });
+				setLoading(false);
 			}
 			if (!response.ok) {
-				console.log(result.message);
+				setError(result.message);
+				setLoading(false);
 			}
 		};
 		fetchPets();
@@ -28,18 +27,15 @@ const Home = () => {
 		<>
 			<div className="flex flex-col">
 				<h4 className="text-4xl text-center my-2">Ours Lovely Pets</h4>
-				{user && (
-					<button
-						onClick={() => setIsShowAddPetForm(true)}
-						className="btn btn-accent btn-sm self-end mx-5">
-						Post your favorite pet
-					</button>
-				)}
-				<hr className="my-2" />
 			</div>
+			{loading && (
+				<div className="flex justify-center content-center my-5">
+					<progress className="progress progress-info w-56" />
+				</div>
+			)}
+			{error && <h1 className="text-8xl text-center my-2">{error}</h1>}
 			<div>
-				{isShowAddPetForm && <AddPet setIsShowAddPetForm={setIsShowAddPetForm} />}
-				{pets ? <Gallery photos={pets} /> : <progress className="progress w-56" />}
+				<Gallery photos={pets} />
 			</div>
 		</>
 	);

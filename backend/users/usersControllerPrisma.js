@@ -19,7 +19,7 @@ const getUsers = async (_req, res) => {
 				name: true,
 				email: true,
 				password: false,
-				pets: false,
+				pets: true,
 			},
 		});
 		return res.status(200).json(users);
@@ -113,8 +113,8 @@ const signinUsers = async (req, res) => {
 	}
 	try {
 		const token = createToken(user._id);
-		const name = user.name;
-		return res.status(200).json({ name, email, token });
+		const { id, name } = user;
+		return res.status(200).json({ id, name, email, token });
 	} catch (error) {
 		return res.status(500).json({
 			message: "Something went wrong",

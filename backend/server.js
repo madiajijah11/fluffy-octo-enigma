@@ -26,9 +26,9 @@ app.route("/").get((_req, res) => {
 	res.sendFile(`${process.cwd()}/index.html`);
 });
 
-const listener = app.listen(process.envPORT || 3000, (err) => {
-	if (err) {
-		return console.log("something bad happened", err);
+const listener = app.listen(process.envPORT || 3000, (error) => {
+	if (error) {
+		return console.log("something bad happened", error);
 	}
 	console.log(`server is listening on ${listener.address().port}`);
 });

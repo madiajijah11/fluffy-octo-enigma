@@ -27,7 +27,7 @@ const newPet = async (req, res) => {
 				description,
 				owner: {
 					connect: {
-						email: owner,
+						id: owner,
 					},
 				},
 			},
@@ -44,6 +44,33 @@ const newPet = async (req, res) => {
 const getPets = async (_req, res) => {
 	try {
 		const pets = await prisma.Pet.findMany({
+			orderBy: {
+				createdAt: "desc",
+			},
+		});
+		res.status(200).json(pets);
+	} catch (error) {
+		res.status(500).json({
+			message: "Something went wrong",
+			error: error.message,
+		});
+	}
+};
+
+const getPetByUserId = async (req, res) => {
+	const { id } = req.params;
+
+	if (!id) {
+		return res.status(400).json({
+			message: "User not found",
+		});
+	}
+
+	try {
+		const pets = await prisma.Pet.findMany({
+			where: {
+				ownerId: id,
+			},
 			orderBy: {
 				createdAt: "desc",
 			},
@@ -141,4 +168,4 @@ const updatePetById = async (req, res) => {
 	}
 };
 
-module.exports = { newPet, getPets, deletePetById, getPetById, updatePetById };
+module.exports = { newPet, getPets, deletePetById, getPetById, updatePetById, getPetByUserId };

@@ -2,10 +2,12 @@ import { useState } from "react";
 import "./AddPet.css";
 import { usePetsContext } from "../../hooks/usePetsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useUserPetsContext } from "../../hooks/useUserPetsContext";
 
 const AddPet = ({ setIsShowAddPetForm }: any) => {
 	const { dispatch } = usePetsContext();
 	const { user } = useAuthContext();
+	const { dispatch: userPetsDispatch }: any = useUserPetsContext();
 
 	const [src, setSrc] = useState("");
 	const [name, setName] = useState("");
@@ -23,7 +25,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 			return;
 		}
 		setLoading(true);
-		const pet = { src, name, age, type, breed, description, owner: user?.email };
+		const pet = { src, name, age, type, breed, description, owner: user?.id };
 		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`, {
 			method: "POST",
 			headers: {
@@ -34,11 +36,12 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 		});
 		const result = await response.json();
 		if (!response.ok) {
-			setError(result);
+			setError(result.message);
 			setLoading(false);
 		}
 		if (response.ok) {
 			dispatch({ type: "ADD_PET", payload: result });
+			userPetsDispatch({ type: "ADD_USER_PET", payload: result });
 			setSrc("");
 			setName("");
 			setAge("");
@@ -60,7 +63,7 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 				</button>
 				<div>
 					<form onSubmit={handleSubmit}>
-						{error && <p className="text-red-500">Something went wrong</p>}
+						{error && <p className="text-red-500">{error}</p>}
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text">Your Pet Image URL</span>
@@ -138,21 +141,21 @@ const AddPet = ({ setIsShowAddPetForm }: any) => {
 							<textarea
 								className="textarea textarea-bordered"
 								name="description"
-								rows={3}
+								rows={5}
 								value={description}
 								onChange={(event) => setDescription(event.target.value)}
 								required
 							/>
 						</div>
-						<div className="form-control">
+						<div className="form-control hidden">
 							<label className="label">
 								<span className="label-text">Pet Owner</span>
 							</label>
 							<input
 								name="owner"
-								type="email"
+								type="id"
 								className="input input-bordered"
-								value={user.email}
+								value={user.id}
 								required
 								disabled
 							/>

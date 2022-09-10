@@ -5,6 +5,7 @@ const requireAuth = require("../middleware/requireAuth");
 
 // Pets routes
 router.get("/", petsControllerPrisma.getPets); // Get all pets
+router.get("/:id", requireAuth, petsControllerPrisma.getPetByUserId); // Get pets by user id
 router.post("/", requireAuth, petsControllerPrisma.newPet); // Create new pet
 router.put("/:id", requireAuth, petsControllerPrisma.updatePetById); // Update pet
 router.get("/:id", petsControllerPrisma.getPetById); // Get pet by id

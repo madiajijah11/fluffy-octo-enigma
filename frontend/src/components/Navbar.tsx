@@ -99,14 +99,20 @@ const Navbar = () => {
 				</div>
 				<ul className="menu menu-horizontal p-0">
 					{user ? (
-						<li>
-							<span>Hi, {user.name}</span>
-							<button
-								className="btn btn-error btn-outline mr-1"
-								onClick={handleClick}>
-								Log out
-							</button>
-						</li>
+						<>
+							<li>
+								<Link to="/profile" className="btn btn-outline normal-case mr-1">
+									Hi, {user.name}
+								</Link>
+							</li>
+							<li>
+								<button
+									className="btn btn-error btn-outline mr-1"
+									onClick={handleClick}>
+									Log out
+								</button>
+							</li>
+						</>
 					) : (
 						<>
 							<li>
