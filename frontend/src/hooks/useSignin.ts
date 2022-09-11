@@ -12,7 +12,7 @@ export const useSignin = () => {
 	const signin = async (email: string, password: string) => {
 		setLoading(true);
 		setError(null);
-		const response = await fetch("http://localhost:3000/api/v1/users/signin", {
+		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/users/signin`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

@@ -25,9 +25,9 @@ export function PetDetail({ userPets, setError }: any) {
 	return (
 		<div className="flex flex-col justify-center content-center items-center">
 			<section className="mt-4 mb-4 mx-auto w-10/12 relative">
-				<div className="grid grid-cols-2 justify-center gap-3">
+				<div className="grid justify-center gap-3">
 					{userPets?.map((pet: any) => (
-						<div key={pet.id} className="card card-side bg-base-100 shadow-xl">
+						<div key={pet.id} className="card card-side bg-base-300 shadow-xl">
 							<figure
 								style={{
 									maxWidth: "50%",
