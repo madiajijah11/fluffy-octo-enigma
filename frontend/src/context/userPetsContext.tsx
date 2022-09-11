@@ -17,9 +17,7 @@ export const useUserPetsReducer = (
 			};
 		case "DELETE_USER_PET":
 			return {
-				userPets: state.userPets.filter(
-					(userPet: any) => userPet._id !== action.payload._id
-				),
+				userPets: state.userPets.filter((userPet: any) => userPet.id !== action.payload.id),
 			};
 		case "UPDATE_USER_PET":
 			return {

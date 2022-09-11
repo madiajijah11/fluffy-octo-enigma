@@ -7,19 +7,20 @@ const Home = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
+	const fetchPets = async () => {
+		const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
+		const result = await response.json();
+		if (response.ok) {
+			dispatch({ type: "SET_PETS", payload: result });
+			setLoading(false);
+		}
+		if (!response.ok) {
+			setError(result.message);
+			setLoading(false);
+		}
+	};
+
 	useEffect(() => {
-		const fetchPets = async () => {
-			const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/api/v1/pets`);
-			const result = await response.json();
-			if (response.ok) {
-				dispatch({ type: "SET_PETS", payload: result });
-				setLoading(false);
-			}
-			if (!response.ok) {
-				setError(result.message);
-				setLoading(false);
-			}
-		};
 		fetchPets();
 	}, []);
 
