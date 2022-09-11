@@ -35,9 +35,7 @@ const Home = () => {
 				</div>
 			)}
 			{error && <h1 className="text-8xl text-center my-2">{error}</h1>}
-			<div>
-				<Gallery photos={pets} />
-			</div>
+			<div>{pets && <Gallery photos={pets} />}</div>
 		</>
 	);
 };
